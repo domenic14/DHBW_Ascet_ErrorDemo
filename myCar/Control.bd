@@ -1,0 +1,157 @@
+classType myCar.Control
+blockdiagramSpecification Main {
+	methodBody calc {
+		outPin active {
+			connection_14, connection_15, connection_17, connection_19, connection_23, connection_25, connection_27, connection_29, connection_33, connection_36
+		}
+	}
+	simpleIdentifier resources.DriverMessages.accButton at (111, 295) {
+		label at (0, -1)
+		outPin {
+			connection_20
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	simpleIdentifier resources.DriverMessages.d_brake at (111, 255) {
+		label at (0, -1)
+		outPin {
+			connection_37, connection_30
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	simpleIdentifier resources.DriverMessages.d_power at (431, 445) {
+		label at (-10, 9)
+		outPin {
+			connection_32
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	simpleIdentifier resources.DriverMessages.decreaseSpeed at (111, 215) {
+		label at (0, -1)
+		outPin {
+			connection_24
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	simpleIdentifier resources.DriverMessages.increaseSpeed at (111, 175) {
+		label at (0, -1)
+		outPin {
+			connection_26
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	simpleIdentifier resources.CarMessages.currentVehicleSpeed at (111, 135) {
+		label at (0, -1)
+		outPin {
+			connection_28
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	simpleIdentifier resources.DriverMessages.acc_state at (501, 135) {
+		label at (0, -1)
+		inPin connection_16
+		sequenceCall {
+			inPin connection_15
+		}
+	}
+	complexIdentifier StateMachine_instance_2 at (261, 131) size (14, 23) {
+		label at (0, 1)
+		methodCall myCar.StateMachine.stateMachineStatemachineTrigger {
+			methodVoidPin at (top, 0) sequenceCall at (-14, -34) {
+				inPin connection_14
+			}
+		}
+		elementCall (myCar.StateMachine.current_v) {
+			argumentPin at (left, 0) connection_28
+			sequenceCall {
+				inPin connection_27
+			}
+		}
+		elementCall (myCar.StateMachine.increase_speed) {
+			argumentPin at (left, 4) connection_26
+			sequenceCall {
+				inPin connection_25
+			}
+		}
+		elementCall (myCar.StateMachine.decrease_speed) {
+			argumentPin at (left, 8) connection_24
+			sequenceCall {
+				inPin connection_23
+			}
+		}
+		elementCall (myCar.StateMachine.d_brake) {
+			argumentPin at (left, 12) connection_30
+			sequenceCall {
+				inPin connection_29
+			}
+		}
+		elementCall (myCar.StateMachine.acc_state) {
+			returnPin at (right, 0) {
+				connection_16
+			}
+			sequenceCall {
+				inPin
+			}
+		}
+		elementCall (myCar.StateMachine.acc_button) {
+			argumentPin at (left, 16) connection_20
+			sequenceCall {
+				inPin connection_19
+			}
+		}
+		elementCall (myCar.StateMachine.ign_on) {
+			argumentPin at (left, 20) connection_18
+			sequenceCall {
+				inPin connection_17
+			}
+		}
+	}
+	simpleIdentifier resources.DriverMessages.ignition at (111, 335) {
+		label at (0, -1)
+		outPin {
+			connection_35, connection_18
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	simpleIdentifier resources.CarMessages.v_power at (481, 445) {
+		label at (0, -1)
+		inPin connection_32
+		sequenceCall at (10, -24) {
+			inPin connection_31
+		}
+	}
+	if at (381, 421) {
+		inPin connection_35 {
+			bendpoints (0, 90)
+		}
+		ifControlFlowOutPin {
+			connection_31
+		}
+		sequenceCall {
+			inPin connection_33
+		}
+	}
+	simpleIdentifier resources.CarMessages.v_brake at (481, 395) {
+		label at (0, -1)
+		inPin connection_37 {
+			bendpoints (80, 0), (80, 140)
+		}
+		sequenceCall {
+			inPin connection_36
+		}
+	}
+}
